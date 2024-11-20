@@ -18,13 +18,13 @@ export default async function HomePage() {
       <SignedIn>
         <div className="flex flex-wrap gap-4">
           {images.map((image) => (
-            <div key={image.id}>
+            <div key={image.id} className="w-48">
               <Link
                 href={image.url!}
-                className="flex flex-col gap-2"
+                className="text-overflow-ellipsis flex flex-col gap-2 truncate"
                 target="_blank"
               >
-                <img className="w-48" src={image.url!} alt={image.name!} />
+                <img src={image.url!} alt={image.name!} />
                 {image.name}
               </Link>
             </div>
