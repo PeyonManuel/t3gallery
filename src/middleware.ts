@@ -1,6 +1,13 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 
-export default clerkMiddleware();
+const isProduction = process.env.VERCEL_ENV === "production";
+
+export default clerkMiddleware(async (auth, req) => {
+  if (!isProduction && req.nextUrl.pathname.startsWith("/api/uploadthing")) {
+    // Bypass authentication for the UploadThing callback in non-production
+    return;
+  }
+});
 
 export const config = {
   matcher: [
@@ -9,6 +16,5 @@ export const config = {
     // Always run for API routes
     "/(api|trpc)(.*)",
     // Exclude UploadThing API callback from the middleware
-    "/api/uploadthing", // <-- Excluding this route
   ],
 };
