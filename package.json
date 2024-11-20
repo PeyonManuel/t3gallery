@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.4.0",
+    "@sentry/nextjs": "8",
     "@t3-oss/env-nextjs": "^0.10.1",
     "@uploadthing/react": "^7.1.1",
     "@uploadthing/shared": "^7.1.1",
