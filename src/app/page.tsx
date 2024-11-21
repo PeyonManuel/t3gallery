@@ -9,14 +9,14 @@ export const dynamic = "force-dynamic";
 export default async function HomePage() {
   const images = await getMyImages();
   return (
-    <main className="">
+    <>
       <SignedOut>
         <div className="flex p-4">
           <div className="text-2x1 h-full w-full font-bold">Please sign in</div>
         </div>
       </SignedOut>
       <SignedIn>
-        <div className="flex max-h-20 flex-wrap justify-center gap-4 p-4">
+        <div className="flex flex-wrap justify-center gap-4 p-4">
           {images &&
             images.map((image) => (
               <div key={image.id} className="w-fit justify-center">
@@ -37,6 +37,6 @@ export default async function HomePage() {
             ))}
         </div>
       </SignedIn>
-    </main>
+    </>
   );
 }
