@@ -17,24 +17,24 @@ export default async function HomePage() {
       </SignedOut>
       <SignedIn>
         <div className="flex max-h-20 flex-wrap justify-center gap-4 p-4">
-          {images.map((image) => (
-            <div key={image.id} className="w-fit justify-center">
-              <Link
-                href={image.url!}
-                className="text-overflow-ellipsis flex flex-col gap-2 truncate"
-                target="_blank"
-              >
-                <Image
-                  src={image.url!}
-                  style={{ objectFit: "contain" }}
-                  width={200}
-                  height={200}
-                  alt={image.name!}
-                />
-                {image.name}
-              </Link>
-            </div>
-          ))}
+          {images &&
+            images.map((image) => (
+              <div key={image.id} className="w-fit justify-center">
+                <Link
+                  href={`/img/${image.id}`}
+                  className="text-overflow-ellipsis flex flex-col gap-2 truncate"
+                >
+                  <Image
+                    src={image.url!}
+                    style={{ objectFit: "contain" }}
+                    width={200}
+                    height={200}
+                    alt={image.name!}
+                  />
+                  {image.name}
+                </Link>
+              </div>
+            ))}
         </div>
       </SignedIn>
     </main>
