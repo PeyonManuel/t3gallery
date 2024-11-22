@@ -63,9 +63,11 @@ export const SimpleUploadButton = () => {
         },
       );
     },
-    onUploadError() {
+    onUploadError(error) {
       toast.dismiss("upload-begin");
-      toast("There was an error uploading", {
+      posthog.capture("upload-error", error);
+      console.log();
+      toast.error("Upload failed" + ", " + error.message, {
         className: "bg-red-500 border-red-500 text-white",
       });
     },
