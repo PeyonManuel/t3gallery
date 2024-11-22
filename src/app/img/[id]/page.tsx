@@ -9,5 +9,5 @@ export default async function ImageModal({
 }) {
   const { id: imgId } = await params;
 
-  return <FullImagePageView params={{ id: Number(imgId) }} />;
+  return <FullImagePageView params={{ id: Number(imgId), modal: false }} />;
 }

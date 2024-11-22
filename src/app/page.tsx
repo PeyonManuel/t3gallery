@@ -1,7 +1,7 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import { db } from "~/server/db";
+import posthog from "posthog-js";
 import { getMyImages } from "~/server/queries";
 
 export const dynamic = "force-dynamic";
@@ -19,19 +19,26 @@ export default async function HomePage() {
         <div className="flex flex-wrap justify-center gap-4 p-4">
           {images &&
             images.map((image) => (
-              <div key={image.id} className="w-fit justify-center">
+              <div
+                key={image.id}
+                className="flex h-40 w-52 flex-col items-center justify-between"
+              >
                 <Link
                   href={`/img/${image.id}`}
-                  className="text-overflow-ellipsis flex flex-col gap-2 truncate"
+                  className="text-overflow-ellipsis flex h-full w-full flex-col items-center justify-between gap-2"
                 >
-                  <Image
-                    src={image.url!}
-                    style={{ objectFit: "contain" }}
-                    width={200}
-                    height={200}
-                    alt={image.name!}
-                  />
-                  {image.name}
+                  <div className="h-full w-full overflow-hidden">
+                    <Image
+                      src={image.url!}
+                      className="h-full w-full object-cover"
+                      width={160}
+                      height={208}
+                      alt={image.name!}
+                    />
+                  </div>
+                  <span className="w-full truncate text-center">
+                    {image.name}
+                  </span>
                 </Link>
               </div>
             ))}

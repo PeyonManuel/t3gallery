@@ -11,7 +11,7 @@ export default async function ImageModal({
 
   return (
     <Modal>
-      <FullImagePageView params={{ id: Number(imgId) }} />
+      <FullImagePageView params={{ id: Number(imgId), modal: true }} />
     </Modal>
   );
 }
